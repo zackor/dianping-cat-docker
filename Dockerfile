@@ -1,6 +1,8 @@
-FROM tomcat:8.0-jre8-alpine
-RUN apk add mysql-client
+FROM tomcat:8.0-jre8
+#RUN apk add mysql-client
+RUN apt-get update && apt-get install -y mysql-client
 RUN mkdir /data && chmod 777 /data/ -R && mkdir -p /data/appdatas/cat/ && mkdir /app
+COPY script/client.xml /data/appdatas/cat/
 COPY script/server.xml /data/appdatas/cat/
 COPY script/datasources.xml /data/appdatas/cat/
 

@@ -10,7 +10,7 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=
   cat:
-    image: cat
+    image: rrtxdockerhub.com:5000/cat
     container_name: cat
     depends_on:
       - database
