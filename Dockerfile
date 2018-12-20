@@ -1,7 +1,12 @@
 FROM tomcat:8.0-jre8
 #RUN apk add mysql-client
-RUN apt-get update && apt-get install -y mysql-client
+RUN apt-get update
+    && apt-get install -y mysql-client
+    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone
+
 RUN mkdir /data && chmod 777 /data/ -R && mkdir -p /data/appdatas/cat/ && mkdir /app
+
 COPY script/client.xml /data/appdatas/cat/
 COPY script/server.xml /data/appdatas/cat/
 COPY script/datasources.xml /data/appdatas/cat/
